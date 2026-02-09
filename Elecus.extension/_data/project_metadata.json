@@ -1,0 +1,149 @@
+{
+  "meta": {
+    "tool_name": "Elecus", 
+    "tool_version": "0.0.1", 
+    "schema_version": "1.0", 
+    "author": "PL", 
+    "description": "Electrical Design Add-in for Revit"
+  }, 
+  "generated": {
+    "timestamp_utc": "2026-02-06T21:57:07Z", 
+    "user": "p002469J", 
+    "machine": "H933M34"
+  }, 
+  "environment": {
+    "language": "en-US", 
+    "revit": {
+      "version_name": "Autodesk Revit 2024", 
+      "version_number": "2024", 
+      "sub_version_number": "2024.3.40"
+    }, 
+    "pyrevit": {
+      "engine": "IronPython", 
+      "version_full": "4.8.13.23182+2215", 
+      "source": "assembly:pyRevitLabs.PyRevit.Runtime.Shared @ C:\\ProgramData\\pyRevit-Master\\bin\\pyRevitLabs.PyRevit.Runtime.Shared.dll"
+    }, 
+    "ironpython": {
+      "version_full": "2.7.7 (IronPython 2.7.7 (2.7.7.0) on .NET 4.0.30319.42000 (64-bit))"
+    }
+  }, 
+  "tool_structure": {
+    "extension_root": "C:\\Users\\p002469J\\OneDrive - Parsons Corp\\PARSONS\\Project R\\pyRevit\\Elecus.extension", 
+    "extension_name": "Elecus.extension", 
+    "data_folder": "C:\\Users\\p002469J\\OneDrive - Parsons Corp\\PARSONS\\Project R\\pyRevit\\Elecus.extension\\_data", 
+    "data_files": [
+      {
+        "name": "table_.csv", 
+        "relative_path": "CSA_C22_1-24/table_.csv", 
+        "ext": ".csv", 
+        "size_bytes": 5, 
+        "modified_utc": "2026-01-16T20:51:37Z"
+      }, 
+      {
+        "name": "table_02.csv", 
+        "relative_path": "CSA_C22_1-24/table_02.csv", 
+        "ext": ".csv", 
+        "size_bytes": 898, 
+        "modified_utc": "2026-01-16T21:12:37Z"
+      }, 
+      {
+        "name": "table_02.json", 
+        "relative_path": "CSA_C22_1-24/table_02.json", 
+        "ext": ".json", 
+        "size_bytes": 3543, 
+        "modified_utc": "2026-01-14T01:33:01Z"
+      }, 
+      {
+        "name": "table_04.json", 
+        "relative_path": "CSA_C22_1-24/table_04.json", 
+        "ext": ".json", 
+        "size_bytes": 3535, 
+        "modified_utc": "2026-01-14T01:33:02Z"
+      }, 
+      {
+        "name": "table_05a.csv", 
+        "relative_path": "CSA_C22_1-24/table_05a.csv", 
+        "ext": ".csv", 
+        "size_bytes": 727, 
+        "modified_utc": "2026-01-16T21:12:39Z"
+      }, 
+      {
+        "name": "ECS_SharedParameter.txt", 
+        "relative_path": "ECS_SharedParameter.txt", 
+        "ext": ".txt", 
+        "size_bytes": 976, 
+        "modified_utc": "2026-02-06T20:47:19Z"
+      }, 
+      {
+        "name": "project_metadata.json", 
+        "relative_path": "project_metadata.json", 
+        "ext": ".json", 
+        "size_bytes": 5068, 
+        "modified_utc": "2026-02-06T21:52:21Z"
+      }
+    ], 
+    "lib_folder": "C:\\Users\\p002469J\\OneDrive - Parsons Corp\\PARSONS\\Project R\\pyRevit\\Elecus.extension\\lib", 
+    "lib_modules": [
+      {
+        "module_name": "__init__", 
+        "relative_path": "__init__.py", 
+        "size_bytes": 357, 
+        "modified_utc": "2026-02-06T21:51:00Z"
+      }, 
+      {
+        "module_name": "ecs_config", 
+        "relative_path": "ecs_config.py", 
+        "size_bytes": 3037, 
+        "modified_utc": "2026-02-06T20:42:07Z"
+      }, 
+      {
+        "module_name": "ecs_csv", 
+        "relative_path": "ecs_csv.py", 
+        "size_bytes": 2928, 
+        "modified_utc": "2026-02-06T20:44:16Z"
+      }, 
+      {
+        "module_name": "ecs_path", 
+        "relative_path": "ecs_path.py", 
+        "size_bytes": 1713, 
+        "modified_utc": "2026-02-06T20:42:26Z"
+      }, 
+      {
+        "module_name": "ecs_revit", 
+        "relative_path": "ecs_revit.py", 
+        "size_bytes": 9595, 
+        "modified_utc": "2026-02-06T20:44:44Z"
+      }
+    ], 
+    "buttons": [
+      {
+        "button_folder": "Elecus.tab/CableSizing.Panel/CableSizing.pushbutton", 
+        "script_path": "Elecus.tab/CableSizing.Panel/CableSizing.pushbutton/script.py"
+      }, 
+      {
+        "button_folder": "Elecus.tab/CableSizing.Panel/Diagnose.pushbutton", 
+        "script_path": "Elecus.tab/CableSizing.Panel/Diagnose.pushbutton/script.py"
+      }, 
+      {
+        "button_folder": "Elecus.tab/Dev.panel/ExportMetadata.pushbutton", 
+        "script_path": "Elecus.tab/Dev.panel/ExportMetadata.pushbutton/script.py"
+      }, 
+      {
+        "button_folder": "Elecus.tab/MyPanel.panel/CableLength.pushbutton", 
+        "script_path": "Elecus.tab/MyPanel.panel/CableLength.pushbutton/script.py"
+      }, 
+      {
+        "button_folder": "Elecus.tab/MyPanel.panel/Diagnose.pushbutton", 
+        "script_path": "Elecus.tab/MyPanel.panel/Diagnose.pushbutton/script.py"
+      }, 
+      {
+        "button_folder": "Elecus.tab/Settings.panel/Diagnose.pushbutton", 
+        "script_path": "Elecus.tab/Settings.panel/Diagnose.pushbutton/script.py"
+      }, 
+      {
+        "button_folder": "Elecus.tab/Settings.panel/ECS_Settings.pushbutton", 
+        "script_path": "Elecus.tab/Settings.panel/ECS_Settings.pushbutton/script.py"
+      }
+    ]
+  }
+}
