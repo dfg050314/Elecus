@@ -12,3 +12,4 @@ __version__ = "0.0.1"
 __schema_version__ = "1.0"
 __author__ = "PL"
 __description__ = "Electrical Design Add-in for Revit"
+__min_revit_version__ = 2024

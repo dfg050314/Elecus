@@ -1,77 +1,69 @@
 # -*- coding: utf-8 -*-
+"""
+Test script V3 - Check Wiring Settings (Ambient Temperature).
+"""
+from pyrevit import revit, script
 
-from pyrevit import revit, forms
 from Autodesk.Revit.DB import *
+from Autodesk.Revit.DB.Electrical import *
 
 doc = revit.doc
+output = script.get_output()
 
-# ----------------------------
-# Helpers
-# ----------------------------
-def param_text(elem, bip):
-    try:
-        p = elem.get_Parameter(bip)
-        if p and p.HasValue:
-            return p.AsString() or p.AsValueString() or ""
-    except:
-        pass
-    return ""
+output.print_md("# Wiring Settings API Test")
+output.print_md("---")
 
-# ----------------------------
-# Collect DCUs
-# ----------------------------
-dcus = (
-    FilteredElementCollector(doc)
-    .OfCategory(BuiltInCategory.OST_ElectricalFixtures)
-    .WhereElementIsNotElementType()
-    .ToElements()
-)
+try:
+    elec_setting = ElectricalSetting.GetElectricalSettings(doc)
+    output.print_md("**ElectricalSetting:** ✓ Accessible")
+    output.print_md("")
+    
+    # List all members containing "temp" or "ambient" or "wir"
+    members = dir(elec_setting)
+    
+    output.print_md("## Temperature/Wiring Related Members")
+    output.print_md("")
+    
+    relevant = [m for m in members if any(k in m.lower() for k in ["temp", "ambient", "wir", "volt"])]
+    for m in relevant:
+        output.print_md("- `{}`".format(m))
+        
+        # Try to get value
+        try:
+            val = getattr(elec_setting, m)
+            output.print_md("  - Value: `{}`".format(val))
+        except:
+            output.print_md("  - (method or inaccessible)")
+    
+    output.print_md("")
+    output.print_md("---")
+    
+    # Try direct access to common properties
+    output.print_md("## Direct Property Access Attempts")
+    output.print_md("")
+    
+    test_props = [
+        "AmbientTemperature",
+        "WiringAmbientTemperature", 
+        "Temperature",
+        "DefaultAmbientTemperature"
+    ]
+    
+    for prop in test_props:
+        try:
+            val = getattr(elec_setting, prop)
+            output.print_md("- `{}`: {}".format(prop, val))
+        except AttributeError:
+            output.print_md("- `{}`: Not found".format(prop))
+        except Exception as e:
+            output.print_md("- `{}`: Error - {}".format(prop, e))
 
-lines = []
-total = 0
-connected = 0
+except Exception as e:
+    output.print_md("**ERROR:** {}".format(str(e)))
+    import traceback
+    output.print_md("```")
+    output.print_md(traceback.format_exc())
+    output.print_md("```")
 
-# ----------------------------
-# Probe
-# ----------------------------
-for dcu in dcus:
-    total += 1
-
-    panel = param_text(dcu, BuiltInParameter.RBS_ELEC_CIRCUIT_PANEL_PARAM)
-    circuit = param_text(dcu, BuiltInParameter.RBS_ELEC_CIRCUIT_NUMBER)
-
-    if not panel and not circuit:
-        continue
-
-    connected += 1
-
-    lines.append(
-        "DCU ID: {}\n"
-        "  Panel: {}\n"
-        "  Circuit: {}\n".format(
-            dcu.Id.IntegerValue,
-            panel or "<EMPTY>",
-            circuit or "<EMPTY>"
-        )
-    )
-
-# ----------------------------
-# Report
-# ----------------------------
-header = (
-    "DCU PARAMETER PROBE\n"
-    "========================\n\n"
-    "Total Electrical Fixtures: {}\n"
-    "DCUs with panel/circuit: {}\n\n"
-).format(total, connected)
-
-if not lines:
-    forms.alert(
-        header + "NO DCUs appear to be circuited.",
-        title="DCU Probe"
-    )
-else:
-    forms.alert(
-        header + "\n".join(lines),
-        title="DCU Probe"
-    )
+output.print_md("---")
+output.print_md("**Test Complete**")

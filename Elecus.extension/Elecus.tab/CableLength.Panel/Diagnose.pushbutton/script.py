@@ -1,17 +1,5 @@
-from pyrevit import revit, forms
-from Autodesk.Revit.DB import BuiltInCategory, FilteredElementCollector, BuiltInParameter
+import ecs_route
+from pyrevit import script as pr_script
 
-doc = revit.doc
-fittings = list(FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_ConduitFitting).WhereElementIsNotElementType())
-
-lines = []
-for f in fittings[:20]:
-    try:
-        t = doc.GetElement(f.GetTypeId())
-        p = t.get_Parameter(BuiltInParameter.SYMBOL_NAME_PARAM) if t else None
-        tname = p.AsString() if p and p.HasValue else "<no type name param>"
-        lines.append("id {} => {}".format(f.Id.IntegerValue, tname))
-    except Exception as ex:
-        lines.append("id {} => ERROR: {}".format(f.Id.IntegerValue, str(ex)))
-
-forms.alert("\n".join(lines), title="ConduitFitting Type Name (param)")
+out = pr_script.get_output()
+out.print_md("ecs_route dir: {}".format(dir(ecs_route)))
